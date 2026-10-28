@@ -1,0 +1,46 @@
+# ResNet classification baseline (e.g. pathology / derm / face-medical)
+experiment:
+  name: cls_resnet_baseline
+  seed: 42
+  output_dir: outputs
+
+data:
+  name: face_medical
+  root: data/raw
+  image_size: 224
+  in_channels: 3
+  num_classes: 2
+  batch_size: 32
+  num_workers: 4
+  train_ratio: 0.8
+  val_ratio: 0.1
+  is_3d: false
+
+model:
+  name: resnet
+  encoder_name: resnet50
+  pretrained: true
+  dropout: 0.2
+
+train:
+  max_epochs: 80
+  lr: 3.0e-4
+  weight_decay: 1.0e-4
+  optimizer: adamw
+  scheduler: cosine
+  loss: ce
+  amp: true
+  gradient_clip_val: 1.0
+  early_stopping_patience: 15
+  log_every_n_steps: 20
+  save_top_k: 3
+  monitor: val/acc
+  monitor_mode: max
+
+eval:
+  checkpoint: null
+  save_predictions: false
+  metrics:
+    - accuracy
+    - sensitivity
+    - specificity

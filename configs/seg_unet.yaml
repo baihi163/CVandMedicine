@@ -1,0 +1,48 @@
+# UNet 2D/3D segmentation baseline
+experiment:
+  name: seg_unet_baseline
+  seed: 42
+  output_dir: outputs
+
+data:
+  name: generic_medical
+  root: data/raw
+  image_size: 256
+  in_channels: 1
+  num_classes: 2
+  batch_size: 4
+  num_workers: 4
+  train_ratio: 0.8
+  val_ratio: 0.1
+  is_3d: false
+
+model:
+  name: unet
+  features: [32, 64, 128, 256, 512]
+  pretrained: false
+  dropout: 0.0
+
+train:
+  max_epochs: 150
+  lr: 1.0e-4
+  weight_decay: 1.0e-5
+  optimizer: adamw
+  scheduler: cosine
+  loss: dice_ce
+  amp: true
+  gradient_clip_val: 1.0
+  early_stopping_patience: 25
+  log_every_n_steps: 10
+  save_top_k: 3
+  monitor: val/dice
+  monitor_mode: max
+
+eval:
+  checkpoint: null
+  save_predictions: true
+  metrics:
+    - dice
+    - iou
+    - hd95
+    - sensitivity
+    - specificity

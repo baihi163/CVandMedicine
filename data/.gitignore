@@ -1,0 +1,22 @@
+# Ignore all medical imaging data under data/
+*
+!.gitignore
+!README.md
+!download_scripts/
+!download_scripts/**
+
+# Explicitly ignore common medical imaging formats if tracked elsewhere
+*.nii
+*.nii.gz
+*.dcm
+*.mha
+*.mhd
+*.nrrd
+*.npz
+*.npz.gz
+*.h5
+*.hdf5
+*.zip
+*.tar
+*.tar.gz
+*.7z

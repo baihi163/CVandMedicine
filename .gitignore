@@ -1,0 +1,59 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.venv/
+venv/
+env/
+ENV/
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Experiment artifacts
+outputs/
+runs/
+lightning_logs/
+wandb/
+mlruns/
+checkpoints/
+*.ckpt
+*.pth
+*.pt
+*.onnx
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Data (keep structure, ignore large medical files)
+data/**
+!data/download_scripts/
+!data/download_scripts/**
+!data/.gitignore
+!data/README.md
+
+# Secrets / local env
+.env
+*.key
+credentials.json
